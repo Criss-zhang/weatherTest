@@ -1,4 +1,4 @@
-package db;
+package com.example.weathertest.db;
 
 import org.litepal.crud.DataSupport;
 
@@ -42,5 +42,15 @@ public class County extends DataSupport {
 
     public void setWeatherId(String weatherId) {
         this.weatherId = weatherId;
+    }
+
+    @Override
+    public String toString() {
+        return "County{" +
+                "id=" + id +
+                ", countyName='" + countyName + '\'' +
+                ", weatherId='" + weatherId + '\'' +
+                ", cityId=" + cityId +
+                '}';
     }
 }

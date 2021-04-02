@@ -1,4 +1,4 @@
-package db;
+package com.example.weathertest.db;
 
 import org.litepal.crud.DataSupport;
 
@@ -9,16 +9,17 @@ public class Province extends DataSupport {
 
     private int provinceCode;
 
+
+    public String getProvinceName() {
+        return provinceName;
+    }
+
     public int getId() {
         return id;
     }
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public String getProvinceName() {
-        return provinceName;
     }
 
     public void setProvinceName(String provinceName) {
@@ -31,5 +32,14 @@ public class Province extends DataSupport {
 
     public void setProvinceCode(int provinceCode) {
         this.provinceCode = provinceCode;
+    }
+
+    @Override
+    public String toString() {
+        return "Province{" +
+                "id=" + id +
+                ", name='" + provinceName + '\'' +
+                ", provinceCode=" + provinceCode +
+                '}';
     }
 }
