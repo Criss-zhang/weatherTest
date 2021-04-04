@@ -1,5 +1,6 @@
 package com.example.weathertest;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
@@ -15,6 +16,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import com.bumptech.glide.Glide;
 import com.example.weathertest.gson.Forecast;
 import com.example.weathertest.gson.Weather;
+import com.example.weathertest.service.AutoUpdateService;
 import com.example.weathertest.util.HttpUtil;
 import com.example.weathertest.util.Utility;
 import okhttp3.Call;
@@ -165,6 +167,7 @@ public class WeatherActivity extends AppCompatActivity {
                             editor.putString("weather",responseText);
                             editor.apply();
                             showWeatherInfo(weather);
+
                         }else {
                             Toast.makeText(WeatherActivity.this, "获取天气失败", Toast.LENGTH_SHORT).show();
                         }
@@ -211,5 +214,7 @@ public class WeatherActivity extends AppCompatActivity {
         carWashText.setText(carwash);
         sportText.setText(sport);
         weatherLayout.setVisibility(View.VISIBLE);
+        Intent intent = new Intent(this, AutoUpdateService.class);
+        startService(intent);
     }
 }
