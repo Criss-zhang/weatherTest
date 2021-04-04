@@ -1,6 +1,7 @@
 package com.example.weathertest;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -80,6 +81,12 @@ public class ChooseAreaFragment extends Fragment {
                     selectedCity = cityList.get(position);
                     queryCounties();
 //                    queryCities();
+                }else if(currentLevel == LEVEL_COUNTY){
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id", weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
@@ -143,7 +150,7 @@ public class ChooseAreaFragment extends Fragment {
     private void queryCounties() {
         titleText.setText(selectedCity.getCityName());
         backButton.setVisibility(View.VISIBLE);
-        countyList = DataSupport.where("id = ?"
+        countyList = DataSupport.where("cityId = ?"
                 ,String.valueOf(selectedCity.getId())).find(County.class);
         if (countyList.size() > 0){
             dataList.clear();
